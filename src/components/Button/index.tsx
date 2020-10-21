@@ -1,4 +1,6 @@
+/** @jsx jsx */
 import * as React from 'react'
+import { jsx, css } from '@emotion/core'
 //____________________________________________
 //
 type ButtonProps = {
@@ -13,7 +15,7 @@ const Button: React.FC<ButtonProps> = ({ value, onClick }) => {
   }
 
   return (
-    <button style={styles.button} onClick={handleClickButton}>
+    <button css={styles.button} onClick={handleClickButton}>
       {value}
     </button>
   )
@@ -21,14 +23,21 @@ const Button: React.FC<ButtonProps> = ({ value, onClick }) => {
 //____________________________________________
 //
 const styles = {
-  button: {
+  button: css({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    width: 44,
-    height: 44,
+    width: 64,
+    height: 64,
     fontSize: 16,
-  },
+    backgroundColor: '#eee',
+    border: 0,
+    cursor: 'pointer',
+
+    '&:hover': {
+      backgroundColor: '#e5e5e5',
+    },
+  }),
 }
 //____________________________________________
 //
