@@ -63,6 +63,13 @@ const Component: React.FC = () => {
     setCalcReady(false)
   }
 
+  const handleClickClear = () => {
+    setDisplay('0')
+    setResult(0)
+    setOperator('')
+    setCalcReady(true)
+  }
+
   return (
     <div css={styles.root}>
       <Display
@@ -76,6 +83,7 @@ const Component: React.FC = () => {
           {[7, 8, 9, 4, 5, 6, 1, 2, 3, 0].map((item) => (
             <Button key={item} value={`${item}`} onClick={handleClickNumber} />
           ))}
+          <Button value={'C'} onClick={handleClickClear} />
           <Button value={`=`} onClick={handleClickEqual} />
         </div>
         <div css={styles.operations}>
