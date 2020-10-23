@@ -1,4 +1,6 @@
+/** @jsx jsx */
 import * as React from 'react'
+import { jsx, css } from '@emotion/core'
 import Button from '../Button'
 import Display from '../Display'
 //____________________________________________
@@ -62,41 +64,53 @@ const Component: React.FC = () => {
   }
 
   return (
-    <div>
+    <div css={styles.root}>
       <Display
         value={display}
         formula={
           result ? (operator ? `${result} ${operator}` : `${result}`) : ''
         }
       />
-      <div style={styles.buttons}>
-        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 0].map((item) => (
-          <Button key={item} value={`${item}`} onClick={handleClickNumber} />
-        ))}
+      <div css={styles.body}>
+        <div css={styles.buttons}>
+          {[7, 8, 9, 4, 5, 6, 1, 2, 3, 0].map((item) => (
+            <Button key={item} value={`${item}`} onClick={handleClickNumber} />
+          ))}
+          <Button value={`=`} onClick={handleClickEqual} />
+        </div>
+        <div css={styles.operations}>
+          {['+', '-', '*', '/'].map((item) => (
+            <Button
+              key={item}
+              value={`${item}`}
+              onClick={handleClickOperator}
+            />
+          ))}
+        </div>
       </div>
-      <div style={styles.operations}>
-        {['+', '-', '*', '/'].map((item) => (
-          <Button key={item} value={`${item}`} onClick={handleClickOperator} />
-        ))}
-      </div>
-      <Button value={`=`} onClick={handleClickEqual} />
     </div>
   )
 }
 //____________________________________________
 //
 const styles = {
-  result: {
-    background: '#f5f5f5',
-    padding: 16,
-  },
-  buttons: {
+  root: css({
+    width: 240,
+  }),
+
+  body: css({
+    display: 'grid',
+    gridTemplateColumns: '3fr 1fr',
+  }),
+
+  buttons: css({
     display: 'grid',
     gridTemplateColumns: 'repeat(3, auto)',
-  },
-  operations: {
-    display: 'flex',
-  },
+  }),
+
+  operations: css({
+    display: 'grid',
+  }),
 }
 //____________________________________________
 //
